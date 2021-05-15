@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import './App.css';
+import BookList from './BookList';
 import firebase from './firebase.js'
 
 function App() {
@@ -14,42 +15,32 @@ function App() {
     const newList = [];
     
     response.forEach(child => {
-      // console.log(child.val());
       const newBook = child.val();
-      newList.push( {title: newBook.title, author: newBook.author} );
+      newList.push( 
+        {
+          title: newBook.title, 
+          author: newBook.author
+        } 
+      );
     });
    
-    console.log(newList)
     return newList;
-   
-    // const data = response.val();
-
-    // console.log(dbRefToRead)
-    // console.log(data)
-
   }
   
   useEffect( () => {
-    // dbRefToRead.on('value', response => console.log(response.val()));
-    // dbRefCompleted.on('value', response => console.log(response.val()));
 
     dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
+    dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
+
   }, []);
   
   return (
     <Fragment>
       <h1>Katelyn's Reading List</h1>
 
-      <ul>
-        {booksToRead.map(book => {
-          return (
-            <li>
-              <p>{book.title}</p>
-              <p>{book.author}</p>
-            </li>
-          )
-        })}
-      </ul>
+      <BookList heading={`Books To Read`} list={booksToRead}/>
+      <BookList heading={`Books Completed`} list={booksCompleted}/>
+
     </Fragment>
   );
 }
