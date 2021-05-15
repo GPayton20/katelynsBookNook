@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import ListItem from './ListItem';
 
 const BookList = ( {heading, list} ) => {
   return (
@@ -7,10 +8,7 @@ const BookList = ( {heading, list} ) => {
       <ul>
         {list.map(book => {
           return (
-            <li key={book.title}>
-              <p>{book.title}</p>
-              <p>by {book.author}</p>
-            </li>
+            <ListItem title={book.title} author={book.author}/>
           )
         })}
       </ul>
