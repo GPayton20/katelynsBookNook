@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import './App.css';
 import BookList from './BookList';
+import AddBookForm from './AddBookForm';
 import firebase from './firebase.js'
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
 
       <BookList heading={`Books To Read`} list={booksToRead}/>
       <BookList heading={`Books Completed`} list={booksCompleted}/>
+
+      <AddBookForm />
 
     </Fragment>
   );

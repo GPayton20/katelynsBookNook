@@ -8,7 +8,7 @@ const BookList = ( {heading, list} ) => {
       <ul>
         {list.map(book => {
           return (
-            <ListItem title={book.title} author={book.author}/>
+            <ListItem title={book.title} author={book.author} />
           )
         })}
       </ul>
