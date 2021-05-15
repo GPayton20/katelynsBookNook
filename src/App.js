@@ -4,10 +4,13 @@ import BookList from './BookList';
 import AddBookForm from './AddBookForm';
 import firebase from './firebase.js'
 
+export const dbRefToRead = firebase.database().ref('/toRead');
+export const dbRefCompleted = firebase.database().ref('/completed');
+
 function App() {
 
-  const dbRefToRead = firebase.database().ref('/toRead');
-  const dbRefCompleted = firebase.database().ref('/completed');
+  // const dbRefToRead = firebase.database().ref('/toRead');
+  // const dbRefCompleted = firebase.database().ref('/completed');
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
