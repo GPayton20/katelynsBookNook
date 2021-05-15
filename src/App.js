@@ -6,7 +6,7 @@ import firebase from './firebase.js'
 
 function App() {
 
-  const dbRefToRead = firebase.database().ref('toRead');
+  const dbRefToRead = firebase.database().ref('/toRead');
   const dbRefCompleted = firebase.database().ref('/completed');
 
   const [booksToRead, setBooksToRead] = useState([]);
@@ -42,10 +42,11 @@ function App() {
       <BookList heading={`Books To Read`} list={booksToRead}/>
       <BookList heading={`Books Completed`} list={booksCompleted}/>
 
-      <AddBookForm />
+      <AddBookForm listToPush={dbRefToRead}/>
 
     </Fragment>
   );
 }
 
 export default App;
+
