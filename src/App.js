@@ -12,6 +12,8 @@ function App() {
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
 
+  const [userGoal, setUserGoal] = useState(3);
+
   const updateList = response => {
     const newList = [];
     
@@ -41,8 +43,18 @@ function App() {
     <Fragment>
       <h1>Katelyn's Reading List</h1>
 
-      <BookList heading={`Books To Read`} list={booksToRead}/>
-      <BookList heading={`Books Completed`} list={booksCompleted}/>
+      <BookList 
+        heading={`Books To Read`} 
+        list={booksToRead} 
+        completed={false}
+      />
+      
+      <BookList 
+        heading={`Books Completed`} 
+        list={booksCompleted} 
+        completed={true}
+        goal={userGoal}
+      />
 
       <AddBookForm listToPush={dbRefToRead}/>
 
