@@ -19,6 +19,8 @@ function App() {
       const newBook = child.val();
       newList.push( 
         {
+          // Retrieve random key from Firebase
+          key: child._delegate.key,
           title: newBook.title, 
           author: newBook.author
         } 

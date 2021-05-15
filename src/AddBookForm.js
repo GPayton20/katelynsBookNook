@@ -17,6 +17,9 @@ const AddBookForm = ({ listToPush }) => {
     event.preventDefault();
 
     listToPush.push({title: titleInput, author: authorInput});
+
+    setTitleInput('');
+    setAuthorInput('');
   }
 
   return (
