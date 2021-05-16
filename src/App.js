@@ -1,8 +1,8 @@
 import { useState, useEffect, Fragment } from 'react';
 import './styles/App.css';
-import BookList from './BookList';
 import AddBookForm from './AddBookForm';
 import firebase from './config/firebase.js'
+import Card from './Card'
 
 export const dbRefToRead = firebase.database().ref('/toRead');
 export const dbRefCompleted = firebase.database().ref('/completed');
@@ -11,7 +11,6 @@ function App() {
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
-  const [viewingCompleted, setViewingCompleted] = useState(true);
 
   const [userGoal, setUserGoal] = useState(3);
   // todo function to update user's reading goal
@@ -44,24 +43,15 @@ function App() {
   return (
     <Fragment>
       <h1>Katelyn's Reading List</h1>
-      <div className="wrapper">
 
-        <div className={`list-card ${viewingCompleted && 'flipped'}`}>
-          <BookList 
-            heading={`Books To Read`} 
-            list={booksToRead} 
-            completed={false}
-          />
+      <main>
+        <div className="wrapper">
           
-          <BookList 
-            heading={`Books Completed`} 
-            list={booksCompleted} 
-            completed={true}
-          />
-        </div>
+          <Card booksToRead={booksToRead} booksCompleted={booksCompleted}/>
 
-      <AddBookForm listToPush={dbRefToRead}/>
-      </div>
+          <AddBookForm listToPush={dbRefToRead}/>
+        </div>
+      </main>
 
     </Fragment>
   );

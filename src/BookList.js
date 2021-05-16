@@ -1,6 +1,6 @@
 import ListItem from './ListItem';
 
-const BookList = ( {heading, list, completed} ) => {
+const BookList = ( {heading, list, completed, children} ) => {
   return (
     <div className={`list-card-side ${completed ? 'flipped' : ''}`}>
       <h2>{heading}</h2>
@@ -17,6 +17,9 @@ const BookList = ( {heading, list, completed} ) => {
           )
         })}
       </ul>
+
+      {children}
+
     </div>
   )
 }

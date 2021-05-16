@@ -40,10 +40,10 @@ body {
 
 .list-card {
   height: 60%;
-  min-width: 500px;
-  width: 80%;
+  width: 90%;
+  min-width: 300px;
+  max-width: 800px;
 
-  /* backface-visibility: hidden; */
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s ease-in-out;
@@ -56,20 +56,22 @@ body {
 .list-card-side {
   position: absolute;
   backface-visibility: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   
   background-color: var(--white-color);
   border-radius: 10px;
   height: 100%;
   width: 100%;
-
 }
 
-/* .side-b {
-  transform: rotateY(180deg);
-} */
-
 ul {
+  height: 70%;
   list-style: none;
+  overflow: scroll;
   padding: 0;
 }
 
@@ -78,6 +80,11 @@ ul li {
   flex-wrap: wrap;
   align-items: baseline;
   padding: 0.3em 0.6em;
+}
+
+ul li::before {
+  content: '📖';
+  margin: 0 10px;
 }
 
 ul p {
@@ -96,6 +103,7 @@ button {
   color: var(--white-color);
   font-size: 0.8rem;
   font-weight: 700;
+  margin: 10px;
   padding: 5px 10px;
   text-transform: uppercase;
 }
