@@ -19,7 +19,6 @@ const ListItem = ( {title, author, id, completed} ) => {
     dbRefCompleted.push(completedBook);
 
     dbRefToRead.child(id).remove();
-
   }
 
   return (
@@ -27,9 +26,10 @@ const ListItem = ( {title, author, id, completed} ) => {
       <p className="title">{title}</p>
       <p className="author">by {author}</p>
       <button onClick={ () => handleDeleteBook(id, completed)}>Delete book</button>
-      {completed 
+      {!completed && <button onClick={() => handleMarkAsRead(title, author, id)}>Mark as read</button>}
+      {/* {completed 
         ? null 
-        : <button onClick={ () => handleMarkAsRead(title, author, id)}>Mark as read</button> }
+        : <button onClick={ () => handleMarkAsRead(title, author, id)}>Mark as read</button> } */}
     </li>
   )
 }
