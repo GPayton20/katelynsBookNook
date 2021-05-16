@@ -11,6 +11,7 @@ function App() {
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
+  const [viewingCompleted, setViewingCompleted] = useState(true);
 
   const [userGoal, setUserGoal] = useState(3);
   // todo function to update user's reading goal
@@ -43,21 +44,24 @@ function App() {
   return (
     <Fragment>
       <h1>Katelyn's Reading List</h1>
+      <div className="wrapper">
 
-      <BookList 
-        heading={`Books To Read`} 
-        list={booksToRead} 
-        completed={false}
-      />
-      
-      <BookList 
-        heading={`Books Completed`} 
-        list={booksCompleted} 
-        completed={true}
-        goal={userGoal}
-      />
+        <div className={`list-card ${viewingCompleted && 'flipped'}`}>
+          <BookList 
+            heading={`Books To Read`} 
+            list={booksToRead} 
+            completed={false}
+          />
+          
+          <BookList 
+            heading={`Books Completed`} 
+            list={booksCompleted} 
+            completed={true}
+          />
+        </div>
 
       <AddBookForm listToPush={dbRefToRead}/>
+      </div>
 
     </Fragment>
   );

@@ -1,15 +1,9 @@
-import { Fragment } from 'react';
 import ListItem from './ListItem';
 
-const BookList = ( {heading, list, completed, goal} ) => {
+const BookList = ( {heading, list, completed} ) => {
   return (
-    <Fragment>
+    <div className={`list-card-side ${completed ? 'flipped' : ''}`}>
       <h2>{heading}</h2>
-      
-      {completed 
-        ? <h3>You have read {list.length} books! {goal - list.length} to go!</h3> 
-        : null
-      }
       
       <ul>
         {list.map(book => {
@@ -23,7 +17,7 @@ const BookList = ( {heading, list, completed, goal} ) => {
           )
         })}
       </ul>
-    </Fragment>
+    </div>
   )
 }
 
