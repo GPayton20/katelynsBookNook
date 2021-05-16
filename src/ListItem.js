@@ -18,8 +18,7 @@ const ListItem = ( {title, author, id, completed} ) => {
 
     dbRefCompleted.push(completedBook);
 
-    console.log(id);
-    // dbRefToRead.child(id).remove();
+    dbRefToRead.child(id).remove();
 
   }
 
