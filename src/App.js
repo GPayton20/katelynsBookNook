@@ -16,6 +16,7 @@ function App() {
   const [booksCompleted, setBooksCompleted] = useState([]);
 
   const [userGoal, setUserGoal] = useState(3);
+  // todo function to update user's reading goal
 
   const updateList = response => {
     const newList = [];
