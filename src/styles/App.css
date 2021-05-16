@@ -33,14 +33,33 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 
   perspective: 1000px;
 }
 
+.progress-tracker {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 25px;
+  overflow: hidden;
+  height: 20px;
+  width: 80%;
+  position: relative;
+}
+
+.progress {
+  background-color: var(--purple-color);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform-origin: left center;
+  transition: transform 1s ease-in-out;
+}
+
+
 .list-card {
   height: 60%;
-  width: 90%;
+  width: 95%;
   min-width: 300px;
   max-width: 800px;
 
@@ -68,10 +87,16 @@ body {
   width: 100%;
 }
 
+h2 {
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
 ul {
   height: 70%;
   list-style: none;
   overflow: scroll;
+  margin: 0;
   padding: 0;
 }
 
@@ -84,15 +109,19 @@ ul li {
 
 ul li::before {
   content: '📖';
-  margin: 0 10px;
+  margin: 0 5px;
 }
 
 ul p {
   margin: 5px;
 }
 
-p.author {
+p.title {
   font-size: 0.8rem;
+}
+
+p.author {
+  font-size: 0.6rem;
   font-style: italic;
 }
 

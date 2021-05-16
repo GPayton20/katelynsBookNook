@@ -1,8 +1,9 @@
 import { useState, useEffect, Fragment } from 'react';
 import './styles/App.css';
-import AddBookForm from './AddBookForm';
 import firebase from './config/firebase.js'
+import AddBookForm from './AddBookForm';
 import Card from './Card'
+import ReadingGoal from './ReadingGoal';
 
 export const dbRefToRead = firebase.database().ref('/toRead');
 export const dbRefCompleted = firebase.database().ref('/completed');
@@ -46,6 +47,8 @@ function App() {
 
       <main>
         <div className="wrapper">
+
+          <ReadingGoal booksCompleted={booksCompleted}/>
           
           <Card booksToRead={booksToRead} booksCompleted={booksCompleted}/>
 
