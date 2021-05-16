@@ -12,9 +12,7 @@ function App() {
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
-
-  const [userGoal, setUserGoal] = useState(3);
-  // todo function to update user's reading goal
+  const [addingBooks, setAddingBooks] = useState(true);
 
   const updateList = response => {
     const newList = [];
@@ -48,11 +46,21 @@ function App() {
       <main>
         <div className="wrapper">
 
+          {addingBooks
+            ? <AddBookForm listToPush={dbRefToRead} />
+            : <Fragment>
+                
+                <ReadingGoal booksCompleted={booksCompleted} />
+                <Card booksToRead={booksToRead} booksCompleted={booksCompleted} />
+              
+              </Fragment>
+          }
+{/* 
           <ReadingGoal booksCompleted={booksCompleted}/>
           
           <Card booksToRead={booksToRead} booksCompleted={booksCompleted}/>
 
-          <AddBookForm listToPush={dbRefToRead}/>
+          <AddBookForm listToPush={dbRefToRead}/> */}
         </div>
       </main>
 

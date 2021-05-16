@@ -4,7 +4,7 @@ import CardFlipButton from './CardFlipButton';
 
 const Card = ({ booksToRead, booksCompleted }) => {
 
-  const [viewingCompleted, setViewingCompleted] = useState(true);
+  const [viewingCompleted, setViewingCompleted] = useState(false);
 
   const handleCardFlip = () => setViewingCompleted(!viewingCompleted);
 

@@ -17,14 +17,18 @@ const AddBookForm = ({ listToPush }) => {
   const handleAddBook = (event) => {
     event.preventDefault();
 
-    listToPush.push({title: titleInput, author: authorInput});
-
-    setTitleInput('');
-    setAuthorInput('');
+    if (!titleInput || !authorInput) {
+      alert('Please enter a title and author')
+    } else {
+      listToPush.push({title: titleInput, author: authorInput});
+  
+      setTitleInput('');
+      setAuthorInput('');
+    }
   }
 
   return (
-    <form action="submit" onSubmit={handleAddBook}>
+    <form action="submit" onSubmit={handleAddBook} className="add-book-form">
       
       <FormInput 
         inputID="title"
