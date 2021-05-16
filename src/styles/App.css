@@ -12,7 +12,10 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   --purple-color: #99f;
   --pink-color: #fee;
   --black-color: rgba(0, 0, 0, 0.85);
-  --white-color: #e5e5e5;
+  --white-color: rgba(255, 255, 255, 0.9);
+
+  --header-height: 200px;
+  --footer-height: 100px;
 }
 
 html {
@@ -25,12 +28,14 @@ body {
 }
 
 .wrapper {
-  height: 100vh;
-  max-width: 1200px;
+  height: calc(100vh - 140px);
+  min-height: 800px;
   width: 95%;
+  max-width: 1200px;
   margin: 0 auto;
 
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -43,7 +48,8 @@ body {
   border-radius: 25px;
   overflow: hidden;
   height: 20px;
-  width: 80%;
+  width: 60%;
+  min-width: 300px;
   position: relative;
 }
 
@@ -55,7 +61,6 @@ body {
   transform-origin: left center;
   transition: transform 1s ease-in-out;
 }
-
 
 .list-card {
   height: 60%;
@@ -93,18 +98,24 @@ h2 {
 }
 
 ul {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   height: 70%;
+  width: 80%;
   list-style: none;
-  overflow: scroll;
-  margin: 0;
+  margin: 0 10px;
   padding: 0;
+  overflow: scroll;
 }
 
 ul li {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  padding: 0.3em 0.6em;
+  padding: 0.6em;
+}
+
+ul li:not(:first-of-type) {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 ul li::before {
@@ -117,11 +128,11 @@ ul p {
 }
 
 p.title {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 p.author {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   font-style: italic;
 }
 
@@ -179,4 +190,19 @@ button {
 .add-book-form button:focus {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+footer p {
+  background-color: var(--purple-color);
+  color: var(--white-color);
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.55);
+}
+
+footer a {
+  text-decoration: none;
+  color: rgb(135, 252, 252);
+  font-weight: 700;
 }

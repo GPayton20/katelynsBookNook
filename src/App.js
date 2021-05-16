@@ -1,9 +1,11 @@
 import { useState, useEffect, Fragment } from 'react';
 import './styles/App.css';
 import firebase from './config/firebase.js'
+import Header from './Header';
 import AddBookForm from './AddBookForm';
 import Card from './Card'
 import ReadingGoal from './ReadingGoal';
+import Footer from './Footer';
 
 export const dbRefToRead = firebase.database().ref('/toRead');
 export const dbRefCompleted = firebase.database().ref('/completed');
@@ -12,7 +14,7 @@ function App() {
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
-  const [addingBooks, setAddingBooks] = useState(true);
+  const [addingBooks, setAddingBooks] = useState(false);
 
   const updateList = response => {
     const newList = [];
@@ -41,7 +43,8 @@ function App() {
   
   return (
     <Fragment>
-      <h1>Katelyn's Reading List</h1>
+      
+      <Header text={`Katelyn's reading list`} />
 
       <main>
         <div className="wrapper">
@@ -55,14 +58,11 @@ function App() {
               
               </Fragment>
           }
-{/* 
-          <ReadingGoal booksCompleted={booksCompleted}/>
-          
-          <Card booksToRead={booksToRead} booksCompleted={booksCompleted}/>
 
-          <AddBookForm listToPush={dbRefToRead}/> */}
         </div>
       </main>
+
+      <Footer />
 
     </Fragment>
   );
