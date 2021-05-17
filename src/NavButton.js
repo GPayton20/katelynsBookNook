@@ -1,7 +1,7 @@
-const NavButton = ({ text, onClick }) => {
+const NavButton = ({ className, text, onClick }) => {
   return (
     <li>
-      <button onClick={onClick}>
+      <button className={className} onClick={onClick}>
         {text}
       </button>
     </li>

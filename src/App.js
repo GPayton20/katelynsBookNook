@@ -20,7 +20,8 @@ function App() {
   const [booksCompleted, setBooksCompleted] = useState([]);
   const [addingBooks, setAddingBooks] = useState(false);
   const [settingGoal, setSettingGoal] = useState(false);
-  const [userGoal, setUserGoal] = useState(undefined);
+  // const [userGoal, setUserGoal] = useState(undefined);
+  const [navDisabled, setNavDisabled] = useState(false);
   
 
   const updateList = response => {
@@ -48,14 +49,30 @@ function App() {
 
   }, []);
 
+  useEffect( () => {
+
+    if (addingBooks || settingGoal) {
+      setNavDisabled(true);
+    } else {
+      setNavDisabled(false);
+    }
+
+  }, [addingBooks, settingGoal] )
+
   
   return (
     <Fragment>
       
       <Header>
         <NavBar>
-          <NavButton text="Add books" onClick={() => setAddingBooks(!addingBooks)} />
-          <NavButton text="Set goal" onClick={() => setSettingGoal(!settingGoal)} />
+          <NavButton 
+            className={navDisabled ? "disabled" : null} 
+            text="Add books"
+            onClick={ () => setAddingBooks(!addingBooks)} />
+          <NavButton 
+            className={navDisabled ? "disabled" : null} 
+            text="Set goal" 
+            onClick={ () => setSettingGoal(!settingGoal)} />
         </NavBar>
       </Header>
 

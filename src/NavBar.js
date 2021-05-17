@@ -1,6 +1,6 @@
-const NavBar = ({ children }) => {
+const NavBar = ({ className, children }) => {
   return (
-    <nav>
+    <nav className={className}>
       <ul>
         {children}
       </ul>
