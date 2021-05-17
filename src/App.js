@@ -6,16 +6,21 @@ import NavBar from './NavBar';
 import AddBookForm from './AddBookForm';
 import Card from './Card'
 import ReadingGoal from './ReadingGoal';
+import SetGoalForm from './SetGoalForm';
 import Footer from './Footer';
 
 export const dbRefToRead = firebase.database().ref('/toRead');
 export const dbRefCompleted = firebase.database().ref('/completed');
+export const dbRefUsers = firebase.database().ref('/users');
 
 function App() {
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
   const [addingBooks, setAddingBooks] = useState(false);
+  const [settingGoal, setSettingGoal] = useState(true);
+  const [userGoal, setUserGoal] = useState(undefined);
+  
 
   const updateList = response => {
     const newList = [];
@@ -41,6 +46,7 @@ function App() {
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
 
   }, []);
+
   
   return (
     <Fragment>
@@ -54,7 +60,9 @@ function App() {
 
           {addingBooks
             ? <AddBookForm listToPush={dbRefToRead} />
-            : <Fragment>
+            : settingGoal
+              ? <SetGoalForm />
+              : <Fragment>
                 
                 <ReadingGoal booksCompleted={booksCompleted} />
                 <Card booksToRead={booksToRead} booksCompleted={booksCompleted} />
