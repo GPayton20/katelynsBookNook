@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FormInput from './FormInput';
 
-const AddBookForm = ({ listToPush }) => {
+const AddBookForm = ({ listToPush, currentState, changeState }) => {
 
   const [titleInput, setTitleInput] = useState('');
   const [authorInput, setAuthorInput] = useState('');
@@ -28,7 +28,7 @@ const AddBookForm = ({ listToPush }) => {
   }
 
   return (
-    <form action="submit" onSubmit={handleAddBook} className="add-book-form">
+    <form action="submit" onSubmit={() => changeState(!currentState)} className="add-book-form">
       
       <FormInput 
         inputID="title"
@@ -41,8 +41,10 @@ const AddBookForm = ({ listToPush }) => {
         value={authorInput}
         onChange={handleInputChange}
       />
-
-      <button>Add book</button>
+      <div className="buttonContainer">
+        <button onClick={handleAddBook}>Add book</button>
+        <button type="submit">Done</button>
+      </div>
     </form>
   )
 }

@@ -1,17 +1,8 @@
-const NavBar = ({ addingBooks, setAddingBooks }) => {
+const NavBar = ({ children }) => {
   return (
     <nav>
       <ul>
-        <li>
-          <button onClick={() => setAddingBooks(!addingBooks)}>
-            Add books
-          </button>
-        </li>
-        <li>
-          <button>
-            Set Goal
-          </button>
-        </li>
+        {children}
       </ul>
     </nav>
   )
