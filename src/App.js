@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import './styles/App.css';
 import firebase from './config/firebase.js'
 import Header from './Header';
+import NavBar from './NavBar';
 import AddBookForm from './AddBookForm';
 import Card from './Card'
 import ReadingGoal from './ReadingGoal';
@@ -44,10 +45,12 @@ function App() {
   return (
     <Fragment>
       
-      <Header text={`Katelyn's reading list`} />
+      <Header>
+        <NavBar addingBooks={addingBooks} setAddingBooks={setAddingBooks}/>
+      </Header>
 
-      <main>
-        <div className="wrapper">
+      <div className="wrapper">
+        <main>
 
           {addingBooks
             ? <AddBookForm listToPush={dbRefToRead} />
@@ -59,8 +62,8 @@ function App() {
               </Fragment>
           }
 
-        </div>
-      </main>
+        </main>
+      </div>
 
       <Footer />
 

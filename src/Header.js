@@ -1,7 +1,9 @@
-const Header = ({ text }) => {
+const Header = ({ children }) => {
   return (
     <header>
-      <h1>{text}</h1>
+      <h1>Katelyn's Reading List</h1>
+
+      {children}
     </header>
   )
 }

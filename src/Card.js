@@ -12,13 +12,13 @@ const Card = ({ booksToRead, booksCompleted }) => {
     <div className={`list-card ${viewingCompleted && 'flipped'}`}>
       
     
-        <BookList
-          heading={`Books To Read`}
-          list={booksToRead}
-          completed={false}
-        >
-          <CardFlipButton onClick={handleCardFlip} completed={false}/>
-        </BookList>
+      <BookList
+        heading={`Books To Read`}
+        list={booksToRead}
+        completed={false}
+      >
+        <CardFlipButton onClick={handleCardFlip} completed={false}/>
+      </BookList>
      
       <BookList
         heading={`Books Completed`}

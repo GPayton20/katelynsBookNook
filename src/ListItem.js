@@ -25,8 +25,11 @@ const ListItem = ( {title, author, id, completed} ) => {
     <li key={id}>
       <p className="title">{title}</p>
       <p className="author">by {author}</p>
-      <button onClick={ () => handleDeleteBook(id, completed)}>Delete book</button>
-      {!completed && <button onClick={() => handleMarkAsRead(title, author, id)}>Mark as read</button>}
+      <div className="container">
+        <button onClick={ () => handleDeleteBook(id, completed)}>Delete</button>
+        {!completed && <button onClick={() => handleMarkAsRead(title, author, id)}
+      >Read</button>}
+      </div>
     </li>
   )
 }
