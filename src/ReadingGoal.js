@@ -10,9 +10,12 @@ const ReadingGoal = ({ booksCompleted }) => {
   console.log(progress);
 
   return (
-    <div className="progress-tracker">
-      <div className="progress" style={ {transform: `scaleX(${progress})`} }></div>
-    </div>
+    <>
+      <p>{booksCompleted.length} / {userGoal}</p>  
+      <div className="progress-tracker">
+        <div className="progress" style={ {transform: `scaleX(${progress})`} }></div>
+      </div>
+    </>
   )
 
 }
