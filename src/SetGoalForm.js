@@ -20,10 +20,10 @@ const SetGoalForm = ({ dbRefGoal, userGoal, setUserGoal, setSettingGoal }) => {
       <h2>How many books do you want to read?</h2>
         <input 
           type="number" 
-            min="1" 
-            step="1" 
-            value={goalInput}
-            onChange={handleGoalInputChange}/>
+          min="1" 
+          step="1" 
+          value={goalInput}
+          onChange={handleGoalInputChange}/>
         <button>Set goal</button>
       </form>
   )

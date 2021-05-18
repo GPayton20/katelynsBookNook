@@ -5,6 +5,7 @@ const AddBookForm = ({ listToPush, currentState, changeState }) => {
 
   const [titleInput, setTitleInput] = useState('');
   const [authorInput, setAuthorInput] = useState('');
+  const [popupIsVisible, setPopupIsVisible] = useState(false);
 
   const handleInputChange = (event) => {
     if (event.target.id === 'title') {
@@ -24,28 +25,36 @@ const AddBookForm = ({ listToPush, currentState, changeState }) => {
   
       setTitleInput('');
       setAuthorInput('');
+
+      setPopupIsVisible(true);
+      setTimeout(() => {
+        setPopupIsVisible(false);
+      }, 1000);
     }
   }
 
   return (
-    <form action="submit" onSubmit={() => changeState(!currentState)} className="add-book-form">
-      
-      <FormInput 
-        inputID="title"
-        value={titleInput}
-        onChange={handleInputChange}
-      />
-      
-      <FormInput 
-        inputID="author"
-        value={authorInput}
-        onChange={handleInputChange}
-      />
-      <div className="buttonContainer">
-        <button onClick={handleAddBook}>Add book</button>
-        <button type="submit">Done</button>
-      </div>
-    </form>
+    <>
+    <p className={`popup-message ${popupIsVisible ? "" : "invisible"}`}>Book added!</p>
+      <form action="submit" onSubmit={() => changeState(!currentState)} className="add-book-form">
+        
+        <FormInput 
+          inputID="title"
+          value={titleInput}
+          onChange={handleInputChange}
+        />
+        
+        <FormInput 
+          inputID="author"
+          value={authorInput}
+          onChange={handleInputChange}
+        />
+        <div className="buttonContainer">
+          <button onClick={handleAddBook}>Add book</button>
+          <button type="submit">Done</button>
+        </div>
+      </form>
+    </>
   )
 }
 
