@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const SetGoalForm = ({ userGoal, setUserGoal, setSettingGoal }) => {
+const SetGoalForm = ({ dbRefGoal, userGoal, setUserGoal, setSettingGoal }) => {
 
   const [goalInput, setGoalInput] = useState(userGoal); 
 
@@ -10,6 +10,7 @@ const SetGoalForm = ({ userGoal, setUserGoal, setSettingGoal }) => {
     event.preventDefault();
 
     setUserGoal(goalInput);
+    dbRefGoal.set(goalInput);
 
     setSettingGoal(false);
   }

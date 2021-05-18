@@ -44,7 +44,7 @@ function App() {
   useEffect( () => {
     dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
-    dbRefGoal.on('value', response => console.log(response.val()));
+    dbRefGoal.on('value', response => setUserGoal(response.val()));
   }, []);
 
   useEffect( () => {
@@ -81,7 +81,8 @@ function App() {
                 currentState={addingBooks}
                 changeState={setAddingBooks} />
             : settingGoal
-              ? <SetGoalForm 
+              ? <SetGoalForm
+                  dbRefGoal={dbRefGoal}
                   userGoal={userGoal}
                   setUserGoal={setUserGoal}
                   setSettingGoal={setSettingGoal}/>
