@@ -1,17 +1,15 @@
-import { useState } from 'react';
 
-const ReadingGoal = ({ booksCompleted }) => {
+const ReadingGoal = ({ booksCompleted, goal }) => {
 
-  const [userGoal, setUserGoal] = useState(3);
-
-  // const progress = Math.min((booksCompleted.length / userGoal) * 100, 100);
-  const progress = Math.min((booksCompleted.length / userGoal), 1);
-
-  console.log(progress);
+  const progress = Math.min((booksCompleted.length / goal), 1);
 
   return (
     <>
-      <p>{booksCompleted.length} / {userGoal}</p>  
+      {progress < 1
+      ? <p>You have read {booksCompleted.length} books. Keep it up!</p>
+      : <p>You have reached your goal. Great job!</p>
+      }
+      
       <div className="progress-tracker">
         <div className="progress" style={ {transform: `scaleX(${progress})`} }></div>
       </div>

@@ -12,7 +12,7 @@ import Footer from './Footer';
 
 export const dbRefToRead = firebase.database().ref('/toRead');
 export const dbRefCompleted = firebase.database().ref('/completed');
-export const dbRefUsers = firebase.database().ref('/users');
+export const dbRefGoal = firebase.database().ref('/goal');
 
 function App() {
 
@@ -20,10 +20,9 @@ function App() {
   const [booksCompleted, setBooksCompleted] = useState([]);
   const [addingBooks, setAddingBooks] = useState(false);
   const [settingGoal, setSettingGoal] = useState(false);
-  // const [userGoal, setUserGoal] = useState(undefined);
   const [navDisabled, setNavDisabled] = useState(false);
+  const [userGoal, setUserGoal] = useState(1);
   
-
   const updateList = response => {
     const newList = [];
     
@@ -43,20 +42,17 @@ function App() {
   }
   
   useEffect( () => {
-
     dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
-
+    dbRefGoal.on('value', response => console.log(response.val()));
   }, []);
 
   useEffect( () => {
-
     if (addingBooks || settingGoal) {
       setNavDisabled(true);
     } else {
       setNavDisabled(false);
     }
-
   }, [addingBooks, settingGoal] )
 
   
@@ -71,7 +67,7 @@ function App() {
             onClick={ () => setAddingBooks(!addingBooks)} />
           <NavButton 
             className={navDisabled ? "disabled" : null} 
-            text="Set goal" 
+            text={`Set goal (${userGoal})`} 
             onClick={ () => setSettingGoal(!settingGoal)} />
         </NavBar>
       </Header>
@@ -85,10 +81,13 @@ function App() {
                 currentState={addingBooks}
                 changeState={setAddingBooks} />
             : settingGoal
-              ? <SetGoalForm />
+              ? <SetGoalForm 
+                  userGoal={userGoal}
+                  setUserGoal={setUserGoal}
+                  setSettingGoal={setSettingGoal}/>
               : <Fragment>
                 
-                <ReadingGoal booksCompleted={booksCompleted} />
+                <ReadingGoal booksCompleted={booksCompleted} goal={userGoal}/>
                 <Card booksToRead={booksToRead} booksCompleted={booksCompleted} />
               
               </Fragment>
