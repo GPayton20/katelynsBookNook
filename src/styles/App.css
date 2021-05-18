@@ -40,14 +40,6 @@ body #root {
   width: 95%;
   max-width: 1200px;
   margin: 0 auto;
-
-  /* display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-
-  perspective: 1000px; */
 }
 
 /* Header styles */
@@ -55,13 +47,16 @@ body #root {
 header {
   background-color: var(--purple-color);
   color: var(--white-color);
-  height: 140px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 h1 {
   font-size: 1.5rem;
-  margin: 0;
+  margin: 15px;
   padding: 15px;
   text-align: center;
   text-transform: capitalize;
@@ -75,9 +70,7 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  width: 100vw;
 }
 
 nav ul button {
@@ -278,6 +271,8 @@ button:hover,
 button:focus {
   cursor: pointer;
 }
+
+/* Footer styles */
 
 footer p {
   background-color: var(--purple-color);
