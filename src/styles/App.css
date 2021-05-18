@@ -280,11 +280,14 @@ button:focus {
 .popup-message {
   font-size: 1.3rem;
   margin: 30px;
+  position: absolute;
+  top: -50px;
   transition: all 0.2s linear;
 }
 
 .invisible {
   opacity: 0;
+  transform: translateY(40px);
 }
 
 /* Footer styles */

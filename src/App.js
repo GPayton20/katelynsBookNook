@@ -22,8 +22,6 @@ function App() {
   const [settingGoal, setSettingGoal] = useState(false);
   const [navDisabled, setNavDisabled] = useState(false);
   const [userGoal, setUserGoal] = useState(1);
-
-  // todo Add "Book added" message to AddBookForm (toggle display:block, add setTimeout)
   
   const updateList = response => {
     const newList = [];
