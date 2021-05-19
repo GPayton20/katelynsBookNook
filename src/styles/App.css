@@ -9,10 +9,12 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 :root {
-  --purple-color: #99f;
+  --light-purple: #88f;
+  --dark-purple: #39397e;
   --pink-color: #fee;
   --black-color: rgba(0, 0, 0, 0.85);
   --white-color: rgba(255, 255, 255, 0.9);
+  --accent: #87fcfc;
   --disabled: rgba(255, 255, 255, 0.3);
 
   --header-height: 200px;
@@ -38,13 +40,12 @@ body #root {
 button {
   border: none;
   border-radius: 10px;
-  background-color: var(--purple-color);
+  background-color: var(--light-purple);
   color: var(--white-color);
   font-size: 0.8rem;
   font-weight: 700;
   margin: 10px;
   padding: 10px 20px;
-  /* padding: 5px 10px; */
   text-transform: uppercase;
   transition: transform 0.3s ease
 }
@@ -59,7 +60,7 @@ button {
 /* Header styles */
 
 header {
-  background-color: var(--purple-color);
+  background-color: var(--light-purple);
   color: var(--white-color);
   display: flex;
   flex-direction: column;
@@ -78,7 +79,7 @@ h1 {
 }
 
 nav ul {
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: var(--dark-purple);
   color: var(--white-color);
   display: flex;
   justify-content: space-evenly;
@@ -93,7 +94,6 @@ nav ul button {
   font-weight: 700;
   letter-spacing: 1.2px;
   margin: 0;
-  /* padding: 10px; */
   text-decoration: none;
   text-transform: capitalize;
 }
@@ -118,25 +118,44 @@ main {
   perspective: 1000px;
 }
 
+.progress-container {
+  background-color: var(--white-color);
+  border-radius: 25px;
+  font-weight: 500;
+  max-width: 500px;
+  min-width: 270px;
+  width: 90%;
+  padding: 5px 30px;
+  text-align: center;
+}
+
 .progress-tracker {
   background-color: rgba(0, 0, 0, 0.55);
   border-radius: 25px;
   overflow: hidden;
   
   height: 20px;
-  margin: 20px 0;
+  margin: 20px auto;
   position: relative;
-  min-width: 300px;
+  min-width: 180px;
   width: 60%;
 }
 
 .progress {
-  background-color: var(--purple-color);
+  background-color: var(--light-purple);
   height: 100%;
   width: 100%;
   position: absolute;
   transform-origin: left center;
   transition: transform 1s ease-in-out;
+}
+
+.text-block {
+  background-color: var(--light-purple);
+  border-radius: 10px;
+  color: var(--white-color);
+  font-size: 1.2rem;
+  padding: 2px 8px;
 }
 
 /* List styles */
@@ -146,7 +165,7 @@ main {
   width: 95%;
   min-width: 300px;
   max-width: 800px;
-  margin: 50px 0;
+  margin-top: 40px;
 
   position: relative;
   transform-style: preserve-3d;
@@ -234,7 +253,7 @@ p.author {
 
 .add-book-form,
 .set-goal-form {
-  background-color: var(--purple-color);
+  background-color: var(--light-purple);
   border-radius: 10px;
   height: 300px;
   margin-top: 50px;
@@ -276,16 +295,15 @@ p.author {
 }
 
 .add-book-form input::placeholder {
-  color: var(--purple-color);
+  color: var(--light-purple);
   text-transform: capitalize;
 }
 
 .add-book-form button,
 .set-goal-form button {
   background-color: #fff;
-  color: var(--purple-color);
+  color: var(--light-purple);
   font-size: 1rem;
-  /* padding: 0.5em 1em; */
 }
 
 button:hover,
@@ -295,6 +313,7 @@ button:focus {
 
 .popup-message {
   font-size: 1.3rem;
+  font-weight: 500;
   letter-spacing: 2.5px;
   margin: 30px;
   position: absolute;
@@ -306,6 +325,7 @@ button:focus {
 
 .invisible {
   letter-spacing: -2px;
+  visibility: hidden;
   opacity: 0;
   transform: translateY(40px);
 }
@@ -313,17 +333,16 @@ button:focus {
 /* Footer styles */
 
 footer p {
-  background-color: var(--purple-color);
+  background-color: var(--dark-purple);
   color: var(--white-color);
   margin: 0;
   padding: 10px;
   text-align: center;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.55);
 }
 
 footer a {
   text-decoration: none;
-  color: rgb(135, 252, 252);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -337,6 +356,13 @@ footer a {
 
   button {
     font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  button:focus,
+  button:hover {
+    background-color: var(--dark-purple);
+    color: var(--accent);
   }
 
   .container button {
