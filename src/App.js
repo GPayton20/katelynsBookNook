@@ -55,6 +55,10 @@ function App() {
     }
   }, [addingBooks, settingGoal] )
 
+  const addBookToRead = (title, author) => {
+    dbRefToRead.push({title, author});
+  }
+
   
   return (
     <Fragment>
@@ -74,12 +78,14 @@ function App() {
 
       <div className="wrapper">
         <main>
-
+          {/* {currentView == 'addingBook' ? <AddBookForm
+            addBook={addBookToRead}
+            onSubmit={() => setAddingBooks(!addingBooks)} /> : ''} */}
+          
           {addingBooks
             ? <AddBookForm 
-                listToPush={dbRefToRead}
-                currentState={addingBooks}
-                changeState={setAddingBooks} />
+                addBook={addBookToRead} 
+                onSubmit={() => setAddingBooks(!addingBooks)}/>
             : settingGoal
               ? <SetGoalForm
                   dbRefGoal={dbRefGoal}

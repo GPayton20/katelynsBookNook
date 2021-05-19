@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FormInput from './FormInput';
 
-const AddBookForm = ({ listToPush, currentState, changeState }) => {
+const AddBookForm = ({ addBook, onSubmit }) => {
 
   const [titleInput, setTitleInput] = useState('');
   const [authorInput, setAuthorInput] = useState('');
@@ -21,7 +21,8 @@ const AddBookForm = ({ listToPush, currentState, changeState }) => {
     if (!titleInput || !authorInput) {
       alert('Please enter a title and author')
     } else {
-      listToPush.push({title: titleInput, author: authorInput});
+
+      addBook(titleInput, authorInput);
   
       setTitleInput('');
       setAuthorInput('');
@@ -36,7 +37,7 @@ const AddBookForm = ({ listToPush, currentState, changeState }) => {
   return (
     <>
     <p className={`popup-message ${popupIsVisible ? "" : "invisible"}`}>Book added!</p>
-      <form action="submit" onSubmit={() => changeState(!currentState)} className="add-book-form">
+      <form action="submit" onSubmit={onSubmit} className="add-book-form">
         
         <FormInput 
           inputID="title"

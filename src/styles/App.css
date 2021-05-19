@@ -28,6 +28,7 @@ html {
 body {
   background-color: var(--pink-color);
   color: var(--black-color);
+  overflow-x: hidden;
 }
 
 body #root {
