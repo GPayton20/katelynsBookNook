@@ -35,6 +35,20 @@ body #root {
   justify-content: space-between;
 }
 
+button {
+  border: none;
+  border-radius: 10px;
+  background-color: var(--purple-color);
+  color: var(--white-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 10px;
+  padding: 10px 20px;
+  /* padding: 5px 10px; */
+  text-transform: uppercase;
+  transition: transform 0.3s ease
+}
+
 .wrapper {
   height: 100%;
   width: 95%;
@@ -79,7 +93,7 @@ nav ul button {
   font-weight: 700;
   letter-spacing: 1.2px;
   margin: 0;
-  padding: 10px;
+  /* padding: 10px; */
   text-decoration: none;
   text-transform: capitalize;
 }
@@ -212,17 +226,8 @@ p.author {
   width: 100%;
 }
 
-button {
-  border: none;
-  border-radius: 10px;
-  background-color: var(--purple-color);
-  color: var(--white-color);
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin: 10px;
+.container button {
   padding: 5px 10px;
-  text-transform: uppercase;
-  transition: transform 0.3s ease
 }
 
 /* Form styling */
@@ -280,7 +285,7 @@ button {
   background-color: #fff;
   color: var(--purple-color);
   font-size: 1rem;
-  padding: 0.5em 1em;
+  /* padding: 0.5em 1em; */
 }
 
 button:hover,
@@ -320,4 +325,22 @@ footer a {
   text-decoration: none;
   color: rgb(135, 252, 252);
   font-weight: 700;
+}
+
+/* Media queries */
+
+@media (min-width: 800px) {
+  
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .container button {
+    font-size: 0.8rem;
+  }
+
 }
