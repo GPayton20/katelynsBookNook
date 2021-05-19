@@ -2,7 +2,7 @@ import { useState } from 'react';
 import BookList from './BookList';
 import CardFlipButton from './CardFlipButton';
 
-const Card = ({ booksToRead, booksCompleted }) => {
+const Card = ({ booksToRead, booksCompleted, markAsRead, deleteBook }) => {
 
   const [viewingCompleted, setViewingCompleted] = useState(false);
 
@@ -16,6 +16,8 @@ const Card = ({ booksToRead, booksCompleted }) => {
         heading={`Books To Read`}
         list={booksToRead}
         completed={false}
+        markAsRead={markAsRead}
+        deleteBook={deleteBook}
       >
         <CardFlipButton onClick={handleCardFlip} completed={false}/>
       </BookList>
@@ -25,6 +27,8 @@ const Card = ({ booksToRead, booksCompleted }) => {
         heading={`Books Completed`}
         list={booksCompleted}
         completed={true}
+        markAsRead={markAsRead}
+        deleteBook={deleteBook}
       >
         <CardFlipButton onClick={handleCardFlip} completed={true}/>
       </BookList>

@@ -10,11 +10,14 @@ import ReadingGoal from './ReadingGoal';
 import SetGoalForm from './SetGoalForm';
 import Footer from './Footer';
 
-export const dbRefToRead = firebase.database().ref('/toRead');
-export const dbRefCompleted = firebase.database().ref('/completed');
-export const dbRefGoal = firebase.database().ref('/goal');
+// export const dbRefToRead = firebase.database().ref('/toRead');
+// export const dbRefCompleted = firebase.database().ref('/completed');
+// export const dbRefGoal = firebase.database().ref('/goal');
 
 function App() {
+  const dbRefToRead = firebase.database().ref('/toRead');
+  const dbRefCompleted = firebase.database().ref('/completed');
+  const dbRefGoal = firebase.database().ref('/goal');
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
@@ -55,9 +58,25 @@ function App() {
     }
   }, [addingBooks, settingGoal] )
 
-  // Add book to To-Read List
+  // Add book to to-read List
   const addBookToRead = (title, author) => {
     dbRefToRead.push({title, author});
+  }
+
+  // Move book from to-read list to completed list
+  const markAsRead = (title, author, id) => {
+    dbRefCompleted.push({title, author});
+
+    dbRefToRead.child(id).remove();
+  }
+
+  // Delete book from either list
+  const deleteBook = (id, completed) => {
+    if (completed) {
+      dbRefCompleted.child(id).remove();
+    } else {
+      dbRefToRead.child(id).remove();
+    }
   }
 
   // Update user's current reading goal
@@ -103,7 +122,12 @@ function App() {
               : <Fragment>
                 
                 <ReadingGoal booksCompleted={booksCompleted} goal={userGoal}/>
-                <Card booksToRead={booksToRead} booksCompleted={booksCompleted} />
+                <Card 
+                  booksToRead={booksToRead} 
+                  booksCompleted={booksCompleted}
+                  markAsRead={markAsRead}
+                  deleteBook={deleteBook} 
+                  />
               
               </Fragment>
           }

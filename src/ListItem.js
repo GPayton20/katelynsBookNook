@@ -1,33 +1,33 @@
-import { dbRefToRead , dbRefCompleted } from './App.js'
+// import { dbRefToRead , dbRefCompleted } from './App.js'
 
-const ListItem = ( {title, author, id, completed} ) => {
+const ListItem = ({ title, author, id, completed, markAsRead, deleteBook }) => {
 
-  const handleDeleteBook = (id, completed) => {
-    if (completed) {
-      dbRefCompleted.child(id).remove();
-    } else {
-      dbRefToRead.child(id).remove();
-    }
-  }
+  // const handleDeleteBook = (id, completed) => {
+  //   if (completed) {
+  //     dbRefCompleted.child(id).remove();
+  //   } else {
+  //     dbRefToRead.child(id).remove();
+  //   }
+  // }
 
-  const handleMarkAsRead = (title, author, id) => {
-    const completedBook = {
-      title: title,
-      author: author
-    }
+  // const handleMarkAsRead = (title, author, id) => {
+  //   const completedBook = {
+  //     title: title,
+  //     author: author
+  //   }
 
-    dbRefCompleted.push(completedBook);
+  //   dbRefCompleted.push(completedBook);
 
-    dbRefToRead.child(id).remove();
-  }
+  //   dbRefToRead.child(id).remove();
+  // }
 
   return (
     <li key={id}>
       <p className="title">{title}</p>
       <p className="author">by {author}</p>
       <div className="container">
-        <button onClick={ () => handleDeleteBook(id, completed)}>Delete</button>
-        {!completed && <button onClick={() => handleMarkAsRead(title, author, id)}
+        <button onClick={ () => deleteBook(id, completed)}>Delete</button>
+        {!completed && <button onClick={() => markAsRead(title, author, id)}
       >Read</button>}
       </div>
     </li>
