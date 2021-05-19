@@ -13,6 +13,7 @@ const Card = ({ booksToRead, booksCompleted }) => {
       
     
       <BookList
+        facing={!viewingCompleted}
         heading={`Books To Read`}
         list={booksToRead}
         completed={false}
@@ -21,6 +22,7 @@ const Card = ({ booksToRead, booksCompleted }) => {
       </BookList>
      
       <BookList
+        facing={viewingCompleted}
         heading={`Books Completed`}
         list={booksCompleted}
         completed={true}
