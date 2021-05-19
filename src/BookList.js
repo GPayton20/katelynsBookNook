@@ -13,6 +13,7 @@ const BookList = ( {heading, list, completed, children} ) => {
             <ListItem 
               title={book.title} 
               author={book.author} 
+              key={book.key}
               id={book.key}
               completed={completed} 
             />
