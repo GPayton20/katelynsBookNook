@@ -62,11 +62,11 @@ function App() {
       <Header>
         <NavBar>
           <NavButton 
-            className={navDisabled ? "disabled" : null} 
+            className={`${navDisabled ? "disabled" : null} ${addingBooks ? "active" : null}`}
             text="Add books"
             onClick={ () => setAddingBooks(!addingBooks)} />
           <NavButton 
-            className={navDisabled ? "disabled" : null} 
+            className={`${navDisabled ? "disabled" : null} ${settingGoal ? "active" : null}`}
             text={`Set goal (${userGoal})`} 
             onClick={ () => setSettingGoal(!settingGoal)} />
         </NavBar>

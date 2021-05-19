@@ -11,7 +11,6 @@ const Card = ({ booksToRead, booksCompleted }) => {
   return (
     <div className={`list-card ${viewingCompleted ? 'flipped' : ``}`}>
       
-    
       <BookList
         facing={!viewingCompleted}
         heading={`Books To Read`}

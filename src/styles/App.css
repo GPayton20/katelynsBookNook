@@ -103,6 +103,10 @@ nav ul button {
   pointer-events: none;
 }
 
+.active {
+  color: var(--accent);
+}
+
 /* Main styles */
 
 main {
@@ -256,7 +260,6 @@ p.author {
   background-color: var(--light-purple);
   border-radius: 10px;
   height: 300px;
-  margin-top: 50px;
   width: 95%;
   min-width: 300px;
   max-width: 700px;

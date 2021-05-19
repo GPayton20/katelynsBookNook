@@ -7,7 +7,7 @@ const ReadingGoal = ({ booksCompleted, goal }) => {
     <div className="progress-container">
       {progress < 1
         ? <p>You have read <span className="text-block">{booksCompleted.length}</span> books. Keep it up!</p>
-      : <p>You have reached your goal. Great job!</p>
+      : <p>You have reached your goal! Great job!</p>
       }
       
       <div className="progress-tracker">
