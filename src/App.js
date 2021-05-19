@@ -55,8 +55,17 @@ function App() {
     }
   }, [addingBooks, settingGoal] )
 
+  // Add book to To-Read List
   const addBookToRead = (title, author) => {
     dbRefToRead.push({title, author});
+  }
+
+  // Update user's current reading goal
+  const setNewGoal = newGoal => {
+    setUserGoal(newGoal);
+    dbRefGoal.set(newGoal);
+
+    setSettingGoal(false);
   }
 
   
@@ -78,9 +87,9 @@ function App() {
 
       <div className="wrapper">
         <main>
-          {/* {currentView == 'addingBook' ? <AddBookForm
+          {/* {currentView == 'addingBook' && <AddBookForm
             addBook={addBookToRead}
-            onSubmit={() => setAddingBooks(!addingBooks)} /> : ''} */}
+            onSubmit={() => setAddingBooks(!addingBooks)} /> } */}
           
           {addingBooks
             ? <AddBookForm 
@@ -88,10 +97,9 @@ function App() {
                 onSubmit={() => setAddingBooks(!addingBooks)}/>
             : settingGoal
               ? <SetGoalForm
-                  dbRefGoal={dbRefGoal}
-                  userGoal={userGoal}
-                  setUserGoal={setUserGoal}
-                  setSettingGoal={setSettingGoal}/>
+                  currentGoal={userGoal}
+                  onSubmit={setNewGoal}
+                  />
               : <Fragment>
                 
                 <ReadingGoal booksCompleted={booksCompleted} goal={userGoal}/>

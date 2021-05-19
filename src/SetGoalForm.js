@@ -1,22 +1,19 @@
 import { useState } from 'react';
 
-const SetGoalForm = ({ dbRefGoal, userGoal, setUserGoal, setSettingGoal }) => {
+const SetGoalForm = ({ currentGoal, onSubmit }) => {
 
-  const [goalInput, setGoalInput] = useState(userGoal); 
+  const [goalInput, setGoalInput] = useState(currentGoal); 
 
   const handleGoalInputChange = event => setGoalInput(event.target.value);
-  
-  const setGoal = (event) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    setUserGoal(goalInput);
-    dbRefGoal.set(goalInput);
-
-    setSettingGoal(false);
+    onSubmit(goalInput);    
   }
 
   return (
-      <form action="submit" className="set-goal-form" onSubmit={setGoal}>
+      <form action="submit" className="set-goal-form" onSubmit={handleSubmit}>
       <h2>How many books do you want to read?</h2>
         <input 
           type="number" 
