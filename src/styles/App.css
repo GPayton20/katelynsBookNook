@@ -316,9 +316,14 @@ button:focus {
 }
 
 .popup-message {
+  background-color: #fff;
+  color: var(--dark-purple);
+  border: 5px solid var(--dark-purple);
+  border-radius: 25px;
   font-size: 1.3rem;
   font-weight: 500;
   letter-spacing: 2.5px;
+  padding: 20px;
   position: absolute;
   text-align: center;
   top: -100px;
