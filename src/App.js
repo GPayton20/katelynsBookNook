@@ -44,7 +44,7 @@ function App() {
     dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
     dbRefGoal.on('value', response => setUserGoal(response.val()));
-  }, [dbRefToRead, dbRefCompleted, dbRefGoal]);
+  }, []);
   
   useEffect( () => {
     if (pageView === 'viewingLists') {
