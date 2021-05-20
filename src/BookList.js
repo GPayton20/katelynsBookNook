@@ -1,6 +1,6 @@
 import ListItem from './ListItem';
 
-const BookList = ({ facing, heading, list, completed, markAsRead, deleteBook, children }) => {
+const BookList = ({ facing, heading, list, completed, children }) => {
   return (
     <div className={`list-card-side ${completed ? 'flipped' : ''} ${facing ? 'facing' : ''}`}>
       <h2>{heading}</h2>
@@ -16,8 +16,6 @@ const BookList = ({ facing, heading, list, completed, markAsRead, deleteBook, ch
               key={book.key}
               id={book.key}
               completed={completed} 
-              markAsRead={markAsRead}
-              deleteBook={deleteBook}
             />
           )
         })}
