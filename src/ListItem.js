@@ -1,5 +1,3 @@
-// import { dbRefToRead , dbRefCompleted } from './App.js'
-
 const ListItem = ({ title, author, id, completed, markAsRead, deleteBook }) => {
 
   return (
