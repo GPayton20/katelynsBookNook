@@ -10,10 +10,6 @@ import ReadingGoal from './ReadingGoal';
 import SetGoalForm from './SetGoalForm';
 import Footer from './Footer';
 
-// export const dbRefToRead = firebase.database().ref('/toRead');
-// export const dbRefCompleted = firebase.database().ref('/completed');
-// export const dbRefGoal = firebase.database().ref('/goal');
-
 function App() {
   const dbRefToRead = firebase.database().ref('/toRead');
   const dbRefCompleted = firebase.database().ref('/completed');
@@ -21,8 +17,8 @@ function App() {
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
-  const [addingBooks, setAddingBooks] = useState(false);
-  const [settingGoal, setSettingGoal] = useState(false);
+  
+  const [pageView, setPageView] = useState('viewingLists');
   const [navDisabled, setNavDisabled] = useState(false);
   const [userGoal, setUserGoal] = useState(1);
   
@@ -49,14 +45,15 @@ function App() {
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
     dbRefGoal.on('value', response => setUserGoal(response.val()));
   }, []);
-
+  
   useEffect( () => {
-    if (addingBooks || settingGoal) {
-      setNavDisabled(true);
-    } else {
+    if (pageView === 'viewingLists') {
       setNavDisabled(false);
+    } else {
+      setNavDisabled(true);
     }
-  }, [addingBooks, settingGoal] )
+  }, [pageView] )
+
 
   // Add book to to-read List
   const addBookToRead = (title, author) => {
@@ -84,52 +81,53 @@ function App() {
     setUserGoal(newGoal);
     dbRefGoal.set(newGoal);
 
-    setSettingGoal(false);
+    setPageView('viewingLists');
   }
 
-  
   return (
     <Fragment>
       
       <Header>
         <NavBar>
           <NavButton 
-            className={`${navDisabled ? "disabled" : null} ${addingBooks ? "active" : null}`}
+            className={`${navDisabled ? "disabled" : null} ${pageView === 'addingBooks' ? "active" : null}`}
             text="Add books"
-            onClick={ () => setAddingBooks(!addingBooks)} />
+            onClick={ () => setPageView('addingBooks')} />
           <NavButton 
-            className={`${navDisabled ? "disabled" : null} ${settingGoal ? "active" : null}`}
+            className={`${navDisabled ? "disabled" : null} ${pageView === 'settingGoal' ? "active" : null}`}
             text={`Set goal (${userGoal})`} 
-            onClick={ () => setSettingGoal(!settingGoal)} />
+            onClick={ () => setPageView('settingGoal')} />
         </NavBar>
       </Header>
 
       <div className="wrapper">
         <main>
-          {/* {currentView == 'addingBook' && <AddBookForm
-            addBook={addBookToRead}
-            onSubmit={() => setAddingBooks(!addingBooks)} /> } */}
-          
-          {addingBooks
-            ? <AddBookForm 
-                addBook={addBookToRead} 
-                onSubmit={() => setAddingBooks(!addingBooks)}/>
-            : settingGoal
-              ? <SetGoalForm
-                  currentGoal={userGoal}
-                  onSubmit={setNewGoal}
-                  />
-              : <Fragment>
-                
-                <ReadingGoal booksCompleted={booksCompleted} goal={userGoal}/>
-                <Card 
-                  booksToRead={booksToRead} 
-                  booksCompleted={booksCompleted}
-                  markAsRead={markAsRead}
-                  deleteBook={deleteBook} 
-                  />
-              
-              </Fragment>
+ 
+          {pageView === 'addingBooks' &&
+            <AddBookForm
+              addBook={addBookToRead}
+              onSubmit={() => setPageView('viewingLists')} />
+          }
+
+          {pageView === 'settingGoal' &&
+            <SetGoalForm
+              currentGoal={userGoal}
+              onSubmit={setNewGoal}
+            />
+          }
+
+          {pageView === 'viewingLists' &&
+            <Fragment>
+
+              <ReadingGoal booksCompleted={booksCompleted} goal={userGoal} />
+              <Card
+                booksToRead={booksToRead}
+                booksCompleted={booksCompleted}
+                markAsRead={markAsRead}
+                deleteBook={deleteBook}
+              />
+
+            </Fragment>
           }
 
         </main>

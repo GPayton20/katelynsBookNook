@@ -19,15 +19,6 @@ const BookList = ({ facing, heading, list, completed, markAsRead, deleteBook, ch
               markAsRead={markAsRead}
               deleteBook={deleteBook}
             />
-            // <li key={book.id}>
-            //   <p className="title">{book.title}</p>
-            //   <p className="author">by {book.author}</p>
-            //   <div className="container">
-            //     <button onClick={() => deleteBook(book.id, completed)}>Delete</button>
-            //     {!completed && <button onClick={() => markAsRead(book.title, book.author, book.id)}
-            //     >Read</button>}
-            //   </div>
-            // </li>
           )
         })}
       </ul>

@@ -2,25 +2,6 @@
 
 const ListItem = ({ title, author, id, completed, markAsRead, deleteBook }) => {
 
-  // const handleDeleteBook = (id, completed) => {
-  //   if (completed) {
-  //     dbRefCompleted.child(id).remove();
-  //   } else {
-  //     dbRefToRead.child(id).remove();
-  //   }
-  // }
-
-  // const handleMarkAsRead = (title, author, id) => {
-  //   const completedBook = {
-  //     title: title,
-  //     author: author
-  //   }
-
-  //   dbRefCompleted.push(completedBook);
-
-  //   dbRefToRead.child(id).remove();
-  // }
-
   return (
     <li key={id}>
       <p className="title">{title}</p>
