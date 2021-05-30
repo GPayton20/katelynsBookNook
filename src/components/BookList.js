@@ -13,8 +13,8 @@ const BookList = ({ facing, heading, list, completed, markAsRead, deleteBook, ch
             <ListItem 
               title={book.title} 
               author={book.author} 
-              key={book.key}
-              id={book.key}
+              key={book.id}
+              id={book.id}
               completed={completed} 
               markAsRead={markAsRead}
               deleteBook={deleteBook}

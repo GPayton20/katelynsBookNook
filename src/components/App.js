@@ -11,7 +11,7 @@ import SetGoalForm from './SetGoalForm';
 import Footer from './Footer';
 
 function App() {
-  const dbRefToRead = firebase.database().ref('/toRead');
+  // const dbRefToRead = firebase.database().ref('/toRead');
   const dbRefCompleted = firebase.database().ref('/completed');
   // const dbRefGoal = firebase.database().ref('/goal');
 
@@ -41,26 +41,30 @@ function App() {
   }
   
   useEffect( () => {
-    // dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
-    dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
-    // dbRefGoal.on('value', response => setUserGoal(response.val()));
 
-    // Retrieve 'readingList' from local storage if it exists and set it to state
-    const readingList = JSON.parse(localStorage.getItem('readingList'));
-    if (readingList) {
-      setBooksToRead(readingList);
-    }
-    
-    // Retrieve 'completedList' from local storage if it exists and set it to state
-    const completedList = JSON.parse(localStorage.getItem('completedList'));
-    if (completedList) {
-      setBooksToRead(completedList);
-    }
+      // dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
+      dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
+      // dbRefGoal.on('value', response => setUserGoal(response.val()));
+      
+      // Retrieve 'readingList' from local storage if it exists and set it to state
+      const readingList = JSON.parse(localStorage.getItem('readingList'));
+      if (readingList) {
+        setBooksToRead(readingList);
+      }
+      
+      // Retrieve 'completedList' from local storage if it exists and set it to state
+      const completedList = JSON.parse(localStorage.getItem('completedList'));
+      if (completedList) {
+        setBooksToRead(completedList);
+      }
+      
+      // Retrieve 'goal' from local storage if it exists and set it to state
+      const goal = localStorage.getItem('goal');
+      if (goal) {
+        setUserGoal(goal);
+      }
+    }, []);
 
-    // Retrieve 'goal' from local storage if it exists and set it to state
-    const goal = localStorage.getItem('goal');
-    setUserGoal(goal ? goal : 1);
-  }, []);
   
   // If user is adding books or updating goal, disable navigation menu
   useEffect( () => {
@@ -86,19 +90,32 @@ function App() {
     setBooksToRead(currentList);
   }
 
+  // todo Refactor to take 'completed' as param, use deleteBook function
   // Move book from to-read list to completed list
   const markAsRead = (title, author, id) => {
     dbRefCompleted.push({title, author});
 
-    dbRefToRead.child(id).remove();
+    // dbRefToRead.child(id).remove();
+    const readingList = [...booksToRead];
+    const newList = readingList.filter(book => book.id !== id);
+    localStorage.setItem('readingList', JSON.stringify(newList));
+    setBooksToRead(newList);
   }
 
   // Delete book from either list
   const deleteBook = (id, completed) => {
     if (completed) {
-      dbRefCompleted.child(id).remove();
+      // dbRefCompleted.child(id).remove();
+      const currentList = [...booksCompleted];
+      const newList = currentList.filter(book => book.id !== id);
+      localStorage.setItem('completedList', JSON.stringify(newList));
+      setBooksCompleted(newList);
     } else {
-      dbRefToRead.child(id).remove();
+      // dbRefToRead.child(id).remove();
+      const currentList = [...booksToRead];
+      const newList = currentList.filter(book => book.id !== id);
+      localStorage.setItem('readingList', JSON.stringify(newList));
+      setBooksToRead(newList);
     }
   }
 
