@@ -41,9 +41,21 @@ function App() {
   }
   
   useEffect( () => {
-    dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
+    // dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
     // dbRefGoal.on('value', response => setUserGoal(response.val()));
+
+    // Retrieve 'readingList' from local storage if it exists and set it to state
+    const readingList = JSON.parse(localStorage.getItem('readingList'));
+    if (readingList) {
+      setBooksToRead(readingList);
+    }
+    
+    // Retrieve 'completedList' from local storage if it exists and set it to state
+    const completedList = JSON.parse(localStorage.getItem('completedList'));
+    if (completedList) {
+      setBooksToRead(completedList);
+    }
 
     // Retrieve 'goal' from local storage if it exists and set it to state
     const goal = localStorage.getItem('goal');
@@ -62,7 +74,16 @@ function App() {
 
   // Add book to to-read List
   const addBookToRead = (title, author) => {
-    dbRefToRead.push({title, author});
+    // dbRefToRead.push({title, author});
+    const currentList = [...booksToRead];
+    // Create newBook object and assign title and author values from user input
+    const newBook = {title, author};
+    // Generate random id and assign to newBook object
+    newBook.id = Math.random() * 1000000;
+
+    currentList.push(newBook);
+    localStorage.setItem('readingList', JSON.stringify(currentList));
+    setBooksToRead(currentList);
   }
 
   // Move book from to-read list to completed list
