@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
-import './styles/App.css';
-import firebase from './config/firebase.js'
+import '../styles/App.css';
+import firebase from '../config/firebase.js'
 import Header from './Header';
 import NavBar from './NavBar';
 import NavButton from './NavButton';
@@ -13,7 +13,7 @@ import Footer from './Footer';
 function App() {
   const dbRefToRead = firebase.database().ref('/toRead');
   const dbRefCompleted = firebase.database().ref('/completed');
-  const dbRefGoal = firebase.database().ref('/goal');
+  // const dbRefGoal = firebase.database().ref('/goal');
 
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksCompleted, setBooksCompleted] = useState([]);
@@ -43,9 +43,14 @@ function App() {
   useEffect( () => {
     dbRefToRead.on('value', response => setBooksToRead(updateList(response)));
     dbRefCompleted.on('value', response => setBooksCompleted(updateList(response)));
-    dbRefGoal.on('value', response => setUserGoal(response.val()));
+    // dbRefGoal.on('value', response => setUserGoal(response.val()));
+
+    // Retrieve 'goal' from local storage if it exists and set it to state
+    const goal = localStorage.getItem('goal');
+    setUserGoal(goal ? goal : 1);
   }, []);
   
+  // If user is adding books or updating goal, disable navigation menu
   useEffect( () => {
     if (pageView === 'viewingLists') {
       setNavDisabled(false);
@@ -79,7 +84,8 @@ function App() {
   // Update user's current reading goal
   const setNewGoal = newGoal => {
     setUserGoal(newGoal);
-    dbRefGoal.set(newGoal);
+    // dbRefGoal.set(newGoal);
+    localStorage.setItem('goal', newGoal);
 
     setPageView('viewingLists');
   }
