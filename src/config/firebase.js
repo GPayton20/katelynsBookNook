@@ -3,12 +3,12 @@ import 'firebase/database';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCbGcZhxJNR5W9S7oGGVgZDqTY3AgQEE1k",
-  authDomain: "katelyns-reading-list.firebaseapp.com",
-  projectId: "katelyns-reading-list",
-  storageBucket: "katelyns-reading-list.appspot.com",
-  messagingSenderId: "1059273829128",
-  appId: "1:1059273829128:web:65865c0544b89c849f5abd"
+  apiKey: "AIzaSyD6LfaDQGMMDenrKNl98cCaI_Z-8MGFzOo",
+  authDomain: "katelyns-book-nook.firebaseapp.com",
+  projectId: "katelyns-book-nook",
+  storageBucket: "katelyns-book-nook.appspot.com",
+  messagingSenderId: "136997831374",
+  appId: "1:136997831374:web:9b8f991b59553d5917069f"
 };
 
 firebase.initializeApp(firebaseConfig);
